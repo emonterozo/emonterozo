@@ -1,0 +1,30 @@
+#skills {
+    background: #fff;
+}
+
+ul.skills-content {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.skills-content li {
+    padding: 0 30px;
+}
+
+.skills-content img {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border-radius: 50%;
+    box-shadow: 2px 3px 5px 6px rgba(231, 235, 8, 0.2);
+    transition: 0.3s;
+}
+
+.skills-content img:hover {
+    box-shadow: 2px 3px 1px 3px rgba(235, 229, 229, 0.2);
+}
