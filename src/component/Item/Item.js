@@ -10,13 +10,13 @@ const Item = (props) => {
             <div className="item card h-100 text-white bg-dark">
                 <div className="card-header">
                     <h3 className="card-title">{project.project_name}</h3>
-                    <h6 className="card-subtitle mb-2">
+                    <i className="card-subtitle mb-2">
                     {
                         project.project_tags.map(tag => (
                             ` #${tag}`
                         ))
                     }
-                    </h6>
+                    </i>
                 </div>
                 <div className="card-body">
                     <p class="card-title">{renderHTML(project.project_description)}</p>

@@ -54,8 +54,8 @@ const About = (props) => {
                 <div className="row py-2">
                     <div className="col-md">
                         <div className="container d-flex flex-column align-items-center">
-                            <h2 className="text-warning">
-                                <i className="fas fa-briefcase icon" />
+                            <h2 className="text-danger">
+                                <i className="p-1 fas fa-briefcase icon" />
                                 Work History
                             </h2>
                             <ul className="text-center">
@@ -77,8 +77,8 @@ const About = (props) => {
                     </div>
                     <div className="col-md">
                         <div className="container d-flex flex-column align-items-center">
-                            <h2 className="text-warning">
-                                <i className="fas fa-school icon" />
+                            <h2 className="text-danger">
+                                <i className="p-1 fas fa-school icon" />
                                 Education History
                             </h2>
                             <ul className="text-center">

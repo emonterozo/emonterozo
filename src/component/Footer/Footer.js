@@ -30,6 +30,7 @@ const Footer = (props) => {
               isAlertVisible &&
                 alert()
             }
+            <h3 className="display-5 text-center">Message Me</h3>
             <form onSubmit={sendEmail}>
             <div className="input-group mb-2">
             <input ref={name} className="form-control mr-2" type="text" placeholder="Your Name"  maxLength="30" required />
