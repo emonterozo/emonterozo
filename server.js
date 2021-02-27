@@ -37,17 +37,15 @@ app.get('/', (req, res ) => {
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 })
 
-app.get('/info', ( req, res ) => {
-    (async() => {
-        const users = await User.find()
-        const socials = await Social.find()
-        const workExperiences = await WorkExperience.find().sort({order: 'desc'})
-        const educations = await Education.find()
-        const projects = await Project.find({isVisible: true})
-        const technologies = await Technology.find().sort({ratings: 'desc'})
+app.get('/info', async ( req, res ) => {
+    const users = await User.find()
+    const socials = await Social.find()
+    const workExperiences = await WorkExperience.find().sort({order: 'desc'})
+    const educations = await Education.find()
+    const projects = await Project.find({isVisible: true})
+    const technologies = await Technology.find().sort({ratings: 'desc'})
 
-        res.json({ users, socials, workExperiences, educations, projects, technologies })
-    })()
+    res.json({ users, socials, workExperiences, educations, projects, technologies })
 })
 
 app.post('/sendmail', (req, res) => {
