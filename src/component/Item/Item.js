@@ -23,14 +23,14 @@ const Item = (props) => {
                 </div>
                 <div className="card-footer">
                 <div className="d-flex flex-column justify-content-center align-items-center">
-                        <button className="btn btn-primary m-2 btn-block">
+                        <a href={project.project_code} target="_blank" className="btn btn-primary m-2 btn-block">
                         <i class="fas fa-code m-2" />
                            Code
-                        </button>
-                        <button className="btn btn-warning m-2 btn-block">
+                        </a>
+                        <a  href={project.project_demo} target="_blank" className="btn btn-warning m-2 btn-block">
                         <i className="fas fa-play m-2" />
                            Demo
-                        </button>
+                        </a>
                 </div>
                 </div>
             </div>
