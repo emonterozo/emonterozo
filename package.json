@@ -2,7 +2,7 @@
   "name": "emonterozo",
   "version": "0.1.0",
   "engines": {
-    "node": "17.9.0"
+    "node": "16.13.0"
   },
   "private": true,
   "dependencies": {
