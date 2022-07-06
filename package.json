@@ -1,6 +1,9 @@
 {
   "name": "emonterozo",
   "version": "0.1.0",
+  "engines": {
+    "node": "17.9.0"
+  },
   "private": true,
   "proxy": "http://localhost:4000",
   "dependencies": {
