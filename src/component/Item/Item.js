@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/row";
+import Row from "react-bootstrap/Row";
 
 import "./Item.css";
 
