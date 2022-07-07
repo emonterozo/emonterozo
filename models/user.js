@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const userSchema = new Schema(
+  {
     user_firstname: String,
     user_middlename: String,
     user_lastname: String,
@@ -14,9 +15,12 @@ const userSchema = new Schema({
     user_image: String,
     user_resume: String,
     canContact: Boolean,
-    landing_page_image: String
-}, {collection: 'users'});
+    landing_page_image: String,
+    is_resume_visible: Boolean,
+  },
+  { collection: "users" }
+);
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

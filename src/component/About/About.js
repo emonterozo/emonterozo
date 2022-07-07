@@ -42,14 +42,16 @@ const About = (props) => {
                 </h2>
               )}
               <p className="lead">{renderHTML(props.user.user_summary)}</p>
-              <a
-                href={props.user.user_resume}
-                target="_blank"
-                className="btn btn-dark"
-                rel="noreferrer"
-              >
-                View Resume
-              </a>
+              {props.user.is_resume_visible && (
+                <a
+                  href={props.user.user_resume}
+                  target="_blank"
+                  className="btn btn-dark"
+                  rel="noreferrer"
+                >
+                  View Resume
+                </a>
+              )}
             </div>
           </div>
           <div className="col-md-5">
