@@ -37,7 +37,7 @@ const Item = (props) => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div className="col-md py-2">
+    <div className="col-md-4 py-2">
       <div className="item card h-100 text-white bg-dark">
         <div className="card-header">
           <h3 className="card-title">{project.project_name}</h3>
