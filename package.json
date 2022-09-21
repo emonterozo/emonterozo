@@ -34,7 +34,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "dev": "PORT=3002 react-scripts start",
+    "dev": "react-scripts start",
     "start": "node server.js",
     "dev_start": "nodemon server.js",
     "build": "react-scripts build",
