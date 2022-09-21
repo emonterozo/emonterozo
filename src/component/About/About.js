@@ -1,118 +1,90 @@
-import { useState, useEffect } from "react";
+import React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import renderHTML from "react-render-html";
+import { useTheme } from "@mui/material/styles";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import PersonIcon from "@mui/icons-material/Person";
+
+const responsivePaper = {
+  flex: { xs: "100%", sm: "calc(50% - 20px)", md: "calc(33% - 20px)" },
+};
 
 const About = (props) => {
-  const [currentWork, setCurrentWork] = useState([]);
-
-  useEffect(() => {
-    filterWorks(props.works);
-  });
-
-  const filterWorks = (array) => {
-    const value = array.filter((item) => {
-      return item.is_employed;
-    });
-    setCurrentWork(value);
-  };
-
+  const theme = useTheme();
+  const { users } = props;
   return (
-    <section
-      className="about-area d-flex flex-column align-items-center"
-      id="about"
-    >
-      <h2 className="section-title">About Me</h2>
-      <div className="container">
-        <div className="row flex-column-reverse flex-lg-row py-2">
-          <div className="col-md-7">
-            <div className="container-fluid h-100 d-flex flex-column justify-content-center align-items-center">
-              {currentWork.length ? (
-                <h2 className="my-3">
-                  <i>
-                    {currentWork[0].job_title} at
-                    <br></br>
-                    {currentWork[0].company_name}
-                  </i>
-                </h2>
-              ) : (
-                <h2 className="py-3">
-                  <i>
-                    {props.user.user_title},<br></br>
-                    Looking for Job Opportunities
-                  </i>
-                </h2>
-              )}
-              <p className="lead">{renderHTML(props.user.user_summary)}</p>
-              {props.user.is_resume_visible && (
-                <a
-                  href={props.user.user_resume}
-                  target="_blank"
-                  className="btn btn-dark"
-                  rel="noreferrer"
-                >
-                  View Resume
-                </a>
-              )}
-            </div>
-          </div>
-          <div className="col-md-5">
-            <div className="card h-100 shadow-lg">
-              <img
-                src={props.user.user_image}
-                className="card-img-top"
-                alt="..."
-              />
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div className="row py-3">
-          <div className="col-md">
-            <div className="container d-flex flex-column align-items-center">
-              <h2 className="text-danger">
-                {/*<i className="p-1 fas fa-briefcase icon" />*/}
-                Work History
-              </h2>
-              <ul className="text-center">
-                {props.works.map(
-                  (experience) =>
-                    !experience.is_employed && (
-                      <li className="m-3 p-2">
-                        <i>
-                          {`${experience.job_title} at ${experience.company_name}`}
-                          <br></br>
-                          {experience.company_address}
-                          <br></br>
-                          {experience.inclusive_date}
-                        </i>
-                      </li>
-                    )
-                )}
-              </ul>
-            </div>
-          </div>
-          <div className="col-md">
-            <div className="container d-flex flex-column align-items-center">
-              <h2 className="text-danger">
-                {/*<i className="p-1 fas fa-school icon" />*/}
-                Education History
-              </h2>
-              <ul className="text-center">
-                {props.educations.map((education) => (
-                  <li className="m-3 p-2">
-                    <i>
-                      {`${education.degree} at ${education.school_name}`}
-                      <br></br>
-                      {education.school_address}
-                      <br></br>
-                      {education.inclusive_date}
-                    </i>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section id="about">
+      <Box>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          padding={5}
+        >
+          <PersonIcon fontSize="large" />
+          <Typography ml={1} variant="h4">
+            About Me
+          </Typography>
+        </Stack>
+        <Box height="100%" display="flex" justifyContent="center">
+          <Stack direction="column" spacing={2} sx={{ width: "100%" }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+              <Box
+                sx={{
+                  ...responsivePaper,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  display: "flex",
+                  paddingBottom: { md: 5 },
+                }}
+              >
+                <Box
+                  elevation={3}
+                  sx={{
+                    width: { xs: 280, sm: 280, md: 500 },
+                    height: { xs: 300, sm: 500, md: 500 },
+                    borderRadius: 3,
+                    boxShadow: 6,
+                    backgroundSize: "cover",
+                    backgroundImage: `url(${users[0].user_image})`,
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  ...responsivePaper,
+                  padding: 5,
+                }}
+              >
+                <Box>
+                  <Stack spacing={1}>
+                    <Typography variant="body1">
+                      {renderHTML(users[0].user_summary)},
+                    </Typography>
+                    <Button
+                      elevation={20}
+                      sx={{
+                        width: 150,
+                        textTransform: "none",
+                        bgcolor: theme.palette.secondary.dark,
+                      }}
+                      href={users[0].user_resume}
+                      target="_blank"
+                      variant="contained"
+                      endIcon={<KeyboardArrowRightIcon />}
+                    >
+                      Resume
+                    </Button>
+                  </Stack>
+                </Box>
+              </Box>
+            </Box>
+          </Stack>
+        </Box>
+      </Box>
     </section>
   );
 };

@@ -11,6 +11,8 @@ const projectSchema = new Schema(
     is_visible: Boolean,
     is_mobile: Boolean,
     preview: Array,
+    project_banner: String,
+    order: Number,
   },
   { collection: "user_projects" }
 );

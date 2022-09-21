@@ -1,59 +1,74 @@
-import { useRef } from 'react';
+import React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
+import EmailIcon from "@mui/icons-material/Email";
+import PlaceIcon from "@mui/icons-material/Place";
+import Divider from "@mui/material/Divider";
+
+const responsiveColumn = {
+  margin: 1,
+  flex: { xs: "100%", sm: "calc(50% - 20px)", md: "calc(33% - 20px)" },
+  alignItems: "center",
+  justifyContent: "center",
+  display: "flex",
+};
 
 const Footer = (props) => {
-    const { user, isAlertVisible, alert, isSending, send } = props
-    const name = useRef(null)
-    const email = useRef(null)
-    const message = useRef(null)
+  const { users } = props;
+  return (
+    <Box bgcolor="#1A2634" padding={3}>
+      <Stack direction="column" spacing={2} sx={{ width: "100%" }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+          <Box sx={responsiveColumn}>
+            <Typography variant="h6" color="white" textAlign="center">
+              Thank you for visiting my personal portfolio website.
+            </Typography>
+          </Box>
+          <Box sx={responsiveColumn}>
+            <Stack spacing={1}>
+              <Typography
+                textAlign="center"
+                variant="h5"
+                marginY={1}
+                color="secondary.light"
+              >
+                Contact Info
+              </Typography>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <PhoneEnabledIcon sx={{ color: "white" }} />
+                <Typography variant="h6" color="white">
+                  {users[0].user_contact}
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <EmailIcon sx={{ color: "white" }} />
+                <Typography variant="h6" color="white">
+                  {users[0].user_primary_email}
+                </Typography>
+              </Stack>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <PlaceIcon sx={{ color: "white" }} />
+                <Typography variant="h6" color="white">
+                  {users[0].user_address}
+                </Typography>
+              </Stack>
+            </Stack>
+          </Box>
+        </Box>
+      </Stack>
+      <Divider sx={{ marginY: 3, backgroundColor: "whitesmoke" }} />
+      <Typography
+        display="flex"
+        justifyContent="center"
+        variant="h6"
+        color="white"
+      >
+        Have a great day
+      </Typography>
+    </Box>
+  );
+};
 
-    const sendEmail = (e) => {
-        e.preventDefault()
-        const data = {
-          name: name.current.value,
-          email: email.current.value,
-          message: message.current.value
-        }
-        send(data)
-    }
-    return (
-        <footer className="bg-dark text-white">
-        <div className="container-fluid p-3">
-          <div className="row align-items-center">
-            <div className="col-md-6">
-              <h3 className="text-center">Thank you for visiting!</h3>
-              <h5 className="text-center text-warning">Design & Developed
-              
-              by {`${user.user_firstname} ${user.user_lastname}`}</h5>
-            </div>
-            <div className="col-md-6">
-            {
-              isAlertVisible &&
-                alert()
-            }
-            <h3 className="display-5 text-center">Message Me</h3>
-            <form onSubmit={sendEmail}>
-            <div className="input-group mb-2">
-            <input ref={name} className="form-control mr-2" type="text" placeholder="Your Name"  maxLength="30" required />
-            <input ref={email} className="form-control ml-2" type="email" placeholder="Your Email" maxLength="30" required />
-            </div>
-            <textarea
-            className="form-control"
-            ref={message}
-            placeholder="Your Message"
-            required
-            rows="4" />
-            {
-              isSending ?  <button className="btn btn-primary btn-block p-2 mt-2" type="button">
-              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              <span className="sr-only">Loading...</span> </button> :
-               <button type="submit" className="btn btn-primary btn-block p-2 mt-2"><i className="fa fa-envelope"></i> Send Message</button>
-            }
-            </form>
-            </div>
-          </div>
-        </div>
-      </footer>
-    )
-}
-
-export default Footer
+export default Footer;

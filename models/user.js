@@ -17,6 +17,9 @@ const userSchema = new Schema(
     canContact: Boolean,
     landing_page_image: String,
     is_resume_visible: Boolean,
+    user_avatar: String,
+    user_greetings: String,
+    user_developments: Array,
   },
   { collection: "users" }
 );

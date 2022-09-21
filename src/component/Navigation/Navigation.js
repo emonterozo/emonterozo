@@ -1,66 +1,167 @@
-const Navigation = (props) => {
-    return (
-          <nav className="fixed-top navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="container">
-              <a className="navbar-brand" href="#ab">
-                e.monterozo
-              </a>
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+import React, { useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+
+const pages = [
+  {
+    label: "Home",
+    href: "#home",
+  },
+  {
+    label: "About",
+    href: "#about",
+  },
+  {
+    label: "Experiences",
+    href: "#experiences",
+  },
+  {
+    label: "Skills",
+    href: "#skills",
+  },
+  {
+    label: "Projects",
+    href: "#projects",
+  },
+  {
+    label: "Contact",
+    href: "#contact",
+  },
+];
+
+const Navigation = () => {
+  const [anchorElNav, setAnchorElNav] = useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+  return (
+    <AppBar position="fixed">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <AdbIcon
+            sx={{ display: { xs: "none", md: "flex" }, marginLeft: 2 }}
+          />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              marginLeft: 1,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            e.monterozo
+          </Typography>
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            e.monterozo
+          </Typography>
+          <Box
+            sx={{
+              marginRight: 2,
+              flexGrow: 1,
+              justifyContent: "flex-end",
+              display: { xs: "none", md: "flex" },
+            }}
+          >
+            {pages.map((page, index) => (
+              <Button
+                key={index}
+                onClick={handleCloseNavMenu}
+                href={page.href}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                }}
               >
-                <span className="navbar-toggler-icon"></span>
-              </button>
+                {page.label}
+              </Button>
+            ))}
+          </Box>
 
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav">
-                  {props.socials.map((social) => (
-                    <li className="nav-item ml-4 socials">
-                      <a className="nav-link" href={social.social_url} target="_blank">
-                        <i
-                          className={social.icon_name}
-                        />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <ul className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                    <a className="nav-link" href="#home">
-                      Home
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#about">
-                      About
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#skills">
-                      Skills
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#projects">
-                      Projects
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#contact">
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-    )
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+            }}
+          >
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {pages.map((page, index) => (
+                <MenuItem
+                  key={index}
+                  onClick={handleCloseNavMenu}
+                  href={page.href}
+                >
+                  <Typography textAlign="center">{page.label}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+};
 
-}
-
-export default Navigation
+export default Navigation;

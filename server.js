@@ -45,7 +45,9 @@ app.get("/info", async (req, res) => {
   const socials = await Social.find();
   const workExperiences = await WorkExperience.find().sort({ order: "desc" });
   const educations = await Education.find();
-  const projects = await Project.find({ is_visible: true });
+  const projects = await Project.find({ is_visible: true }).sort({
+    order: "asc",
+  });
   const technologies = await Technology.find().sort({ ratings: "desc" });
 
   res.json({
