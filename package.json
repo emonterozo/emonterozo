@@ -2,7 +2,7 @@
   "name": "emonterozo",
   "version": "0.1.0",
   "engines": {
-    "node": "18.9.0"
+    "node": "18.x"
   },
   "proxy": "http://localhost:3001",
   "private": true,
